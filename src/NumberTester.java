@@ -1,30 +1,26 @@
 public class NumberTester {
 
-    NumberTester oddTester;
-    NumberTester primeTester;
 
-    NumberTester palindromeTester;
+    String filename;
 
-    public void setPalindromeTester(NumberTester palindromeTester) {
-        this.palindromeTester = palindromeTester;
+    public void setPalindromeTester(NumberTest palindromeTester) {
+
     }
 
-    public NumberTester(NumberTester oddTester, NumberTester primeTester, NumberTester palindromeTester) {
-        this.oddTester = oddTester;
-        this.primeTester = primeTester;
-        this.palindromeTester = palindromeTester;
+    public NumberTester(String filename) {
+
     }
 
-    public void setOddEvenTester (NumberTester oddTester ) {
-        this.oddTester = oddTester;
+    public void setOddEvenTester (NumberTest oddTester ) {
+
     }
 
-    public void setPrimeTester(NumberTester primeTester){
-        this.primeTester=primeTester;
+    public void setPrimeTester(NumberTest primeTester){
+        
     }
 
     public void testFile(){
-        
+
     }
 
 
