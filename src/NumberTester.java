@@ -27,7 +27,7 @@ public class NumberTester {
             BufferedReader bufferedReader=new BufferedReader(new FileReader(new File(fileName)));
             testfaelle=Integer.parseInt(bufferedReader.readLine());
 
-            for(int i=1;i<testfaelle;i++){
+            for(int i=1;i<=testfaelle;i++){
                 String line= bufferedReader.readLine();
                 String []splittedLine=line.split(" ");
                 int wasWirdUeberprueft=Integer.parseInt(splittedLine[0]);
@@ -35,14 +35,31 @@ public class NumberTester {
 
                 switch (wasWirdUeberprueft){
                     case 1:setOddEvenTester((n)->n%2==0);
-                        System.out.println(oddTester );break;
-                    case 2:
-                    case 3:
+                        System.out.println(oddTester.testNumber(zahlMitDerGerechnetWird) ? "ODD": "EVEN" );break;
+                    case 2:setPrimeTester(this::isPrime);
+                        System.out.println(primeTester.testNumber(zahlMitDerGerechnetWird) ? "PRIME":"NO PRIME");break;
+                    case 3:setPalidromeTester((n)->{
+                        String str = "" + n;
+                        return str.equals(new StringBuilder(str).reverse().toString());
+                    }); System.out.println(palidromeTester.testNumber(zahlMitDerGerechnetWird) ?"Palindrom": "No palindrom");break;
 
                 }
             }
         } catch (IOException e) {
             System.err.println("Fehler mit BufferdReadeer");
         }
+
+
+        }
+    private boolean isPrime(int zahl){
+
+        for(int i=2;i<Math.sqrt(zahl);i++){
+            if(zahl==i){
+                return true;
+            }else if(zahl%i==0){
+                return false;
+            }
+        }
+        return true;
     }
 }
