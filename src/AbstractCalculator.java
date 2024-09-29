@@ -1,16 +1,18 @@
 public abstract class AbstractCalculator {
 
-    protected CalculateOperation add;
-    protected CalculateOperation subtract;
-    protected CalculateOperation multiply;
-    protected CalculateOperation divide;
+    protected CalculationOperation add;
+    protected CalculationOperation subtract;
+    protected CalculationOperation multiply;
+    protected CalculationOperation divide;
 
-    public AbstractCalculator(CalculateOperation add, CalculateOperation subtract, CalculateOperation divide, CalculateOperation multiply) {
+    public AbstractCalculator(CalculationOperation add, CalculationOperation subtract, CalculationOperation divide, CalculationOperation multiply) {
         this.add = add;
         this.subtract = subtract;
         this.divide = divide;
         this.multiply = multiply;
     }
+
+
 
     public abstract Number add(Number a,Number b);
     public abstract Number subtract(Number a,Number b);

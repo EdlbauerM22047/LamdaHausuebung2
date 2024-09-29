@@ -3,13 +3,13 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class CalculatorApp {
     public static void main(String[] args) {
         NumberTester numberTester=new NumberTester("numbers.txt");
         numberTester.testFile();
         //CalculationOperation calculationOperation=new CalculationOperation();
-       Main main=new Main();
-       main.starten();
+        Main main=new Main();
+        main.starten();
 
     }
     BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(new DataInputStream(System.in)));

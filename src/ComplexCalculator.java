@@ -1,4 +1,10 @@
 public class ComplexCalculator extends AbstractCalculator{
+
+
+    public ComplexCalculator(CalculationOperation add, CalculationOperation subtract, CalculationOperation divide, CalculationOperation multiply) {
+        super(add, subtract, divide, multiply);
+    }
+
     @Override
     public Number add(Number a, Number b) {
         return null;
