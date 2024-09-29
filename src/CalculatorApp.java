@@ -4,14 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CalculatorApp {
-    public static void main(String[] args) {
-        NumberTester numberTester=new NumberTester("numbers.txt");
-        numberTester.testFile();
-        //CalculationOperation calculationOperation=new CalculationOperation();
-        Main main=new Main();
-        main.starten();
 
-    }
     BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(new DataInputStream(System.in)));
     int calculator;
     int number_x_a;
@@ -19,30 +12,44 @@ public class CalculatorApp {
     int number_y_a;
     int number_y_b;
     int operation;
-    //CalculateOperation calculateOperation;
+    Number solutionNumber;
+    AbstractCalculator abstractCalculator;
     public void starten() {
         while (true){
-            chooseCalculator();
+            AusgabeChooseCalculator();
             if(calculator==4)System.exit(0);
-            enterNumbers();
-            cooseOperation();
+            AusgabeEnterNumbers();
+            AusgabeCooseOperation();
             while (operation==5){
-                enterNumbers();
-                cooseOperation();
+                AusgabeEnterNumbers();
+                AusgabeCooseOperation();
             }
             System.out.println("----------------------");
 
             switch (calculator){
+                case 1: abstractCalculator=new RationalCalculator();break;
+                case 2: abstractCalculator=new VectorCalculator();break;
+                case 3:abstractCalculator=new ComplexCalculator();break;
+                default:System.out.println("Sie haben eine Falsch Zahl eingegeben");
                 //case 1:calculateOperation=new RationalCalculator()
             }
-            //case 1:RationalCalculator rationalCalculator=new RationalCalculator(number_x_a,number_x_b,number_y_a,number_y_b);
+            switch (operation){
+                case 1:solutionNumber=abstractCalculator.add(new Number(number_x_a,number_x_b),new Number(number_y_a,number_y_b));break;
+                case 2:solutionNumber=abstractCalculator.subtract(new Number(number_x_a,number_x_b),new Number(number_y_a,number_y_b));break;
+                case 3:solutionNumber=abstractCalculator.multiply(new Number(number_x_a,number_x_b),new Number(number_y_a,number_y_b));break;
+                case 4:solutionNumber=abstractCalculator.divide(new Number(number_x_a,number_x_b),new Number(number_y_a,number_y_b));break;
+                default:
+                    System.out.println("Sie haben eine unglültige Zahl eingegeben");
+            }
 
+            //case 1:RationalCalculator rationalCalculator=new RationalCalculator(number_x_a,number_x_b,number_y_a,number_y_b);
+            AusgabeSolution();
         }
     }
 
 
 
-    private void chooseCalculator(){
+    private void AusgabeChooseCalculator(){
         System.out.println("Choose calculator :");
         System.out.println("1 - Relational calculator");
         System.out.println("2 - Vector calculator");
@@ -55,7 +62,7 @@ public class CalculatorApp {
             System.err.println("BufferdreaderFehler");        }
 
     }
-    private void enterNumbers(){
+    private void AusgabeEnterNumbers(){
 
         try {
             System.out.print("Enter number x a > ");
@@ -72,7 +79,7 @@ public class CalculatorApp {
 
     }
 
-    private void cooseOperation(){
+    private void AusgabeCooseOperation(){
         System.out.println("Choose operation :");
         System.out.println("1 - add");
         System.out.println("2 - subtract");
@@ -86,5 +93,18 @@ public class CalculatorApp {
             System.err.println("BufferdreaderFehler");
         }
 
+    }
+    private void AusgabeSolution(){
+        System.out.println("Solution :");
+        switch (calculator){
+            case 1:System.out.println("a = "+solutionNumber.getA());
+                   System.out.println("b = "+ solutionNumber.getB());break;
+            case 2:System.out.println("("+ solutionNumber.getA()+")");
+                   System.out.println("("+solutionNumber.getB()+")");break;
+            case 3:if(solutionNumber.getB()>=0) System.out.println(""+ solutionNumber.getA()+"+"+ solutionNumber.getB()+"i");
+                    else System.out.println(""+solutionNumber.getA()+""+solutionNumber.getB()+"i");
+        }
+
+        System.out.println("----------------------------");
     }
 }
